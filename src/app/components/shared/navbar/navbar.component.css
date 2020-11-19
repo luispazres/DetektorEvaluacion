@@ -1,0 +1,14 @@
+img {
+    border: 0;
+    max-width: 100%;
+    vertical-align: middle;
+    display: inline-block;
+    border-style: none;
+}
+
+.logodtk {
+    width: 400px;
+    margin-top: 10px;
+    /*margin-left: -104px;*/
+    clear: none;
+}

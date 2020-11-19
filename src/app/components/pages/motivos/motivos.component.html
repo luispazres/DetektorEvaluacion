@@ -1,0 +1,54 @@
+<div class="row mb-2">
+  <div class="col text-right">
+    <button routerLink="/motivo/nuevo"
+            class="btn btn-primary">
+      <i class="fa fa-plus"></i>
+      Agregar Motivo
+    </button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <table *ngIf="!cargando && motivos.length > 0" datatable class="table mt-3 animated fadeIn faster animated fadeIn faster">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Descripción Motivo</th>
+          <th>Editar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let motivo of motivos; index as i">
+          <td>{{motivo.id}}</td>
+          <td>{{motivo.des_motivo}}</td>
+          <td>
+              <button type="button" [routerLink]="['/motivo', motivo.id ]" class="btn btn-primary">Editar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="!cargando && motivos.length === 0"
+      class="alert alert-warning text-center mt-3 animated fadeIn faster">
+      <h4 class="alert-heading">No hay registros</h4>
+      <p>
+        <i class="fa fa-exclamation fa-2x"></i>
+      </p>
+    </div>
+  
+    <div *ngIf="cargando" 
+        class="alert alert-info text-center mt-3 animated fadeIn faster">
+      <h4 class="alert-heading">Cargando</h4>
+      <p>
+        <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+      </p>
+      <p class="mb-0">
+        Espere por favor
+      </p>
+    </div>
+  </div>
+ 
+</div>
+
+  
