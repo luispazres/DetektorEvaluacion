@@ -1,4 +1,7 @@
 <div class="row mb-2">
+  <div class="col text-left">
+    <h1>Lista de Motivos</h1>
+  </div>
   <div class="col text-right">
     <button routerLink="/motivo/nuevo"
             class="btn btn-primary">
@@ -23,7 +26,8 @@
           <td>{{motivo.id}}</td>
           <td>{{motivo.des_motivo}}</td>
           <td>
-              <button type="button" [routerLink]="['/motivo', motivo.id ]" class="btn btn-primary">Editar</button>
+              <button type="button" [routerLink]="['/motivo', motivo.id ]" class="btn btn-warning mr-2"><i class="fa fa-edit"></i>Editar</button>
+              <button type="button" [routerLink]="['/motivo', motivo.id ]" class="btn btn-danger"><i class="fa fa-trash"></i>Borrar</button>
           </td>
         </tr>
       </tbody>
