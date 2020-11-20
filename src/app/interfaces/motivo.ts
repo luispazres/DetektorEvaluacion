@@ -1,6 +1,14 @@
+// To parse this data:
+//
+//   import { Convert, Motivo } from "./file";
+//
+//   const motivo = Convert.toMotivo(json);
+
 export interface Motivo {
-    id:         number;
+    motivo:     number;
     des_motivo: string;
+    estado:     string;
+    tipo:       string;
 }
 
 // Converts JSON strings to/from your types

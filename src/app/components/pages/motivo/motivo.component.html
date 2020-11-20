@@ -1,5 +1,5 @@
 
-<h1>Motivo <small>Descripción del Motivo</small> </h1>
+<h1>Motivo</h1>
 <hr>
 
 
@@ -18,16 +18,16 @@
 <div class="row animated fadeIn faster">
   <div class="col">
 
-    <form (ngSubmit)="guardar( f )"
-          #f="ngForm">
+    <form (ngSubmit)="guardar( forma )"
+          #forma="ngForm">
 
       <div class="form-group">
-        <label>Motivo ID</label>
+        <label>Motivo</label>
         <input type="text"
                class="form-control"
-               placeholder="Motivo ID"
-               [(ngModel)]="motivo.id"
-               name="id"
+               placeholder="Motivo"
+               [(ngModel)]="motivo.motivo"
+               name="motivo"
                disabled="disabled">
         <small class="form-text text-muted">Este campo es autogenerado</small>
       </div>
@@ -38,9 +38,36 @@
           <input type="text"
                  class="form-control"
                  placeholder="Descripción del Motivo"
+                 [class.is-invalid]="des_motivo.invalid && des_motivo.touched"
                  [(ngModel)]="motivo.des_motivo"
-                 name="descripcion"
+                 name="des_motivo"
+                 #des_motivo="ngModel"
                  required>
+          <small *ngIf="des_motivo.invalid && des_motivo.touched" class="form-text text-danger">Este campo es obligatorio</small>
+      </div>
+      <div class="form-group">
+          <label>Descripción</label>
+          <input type="text"
+                 class="form-control"
+                 placeholder="Estado"
+                 [class.is-invalid]="estado.invalid && estado.touched"
+                 [(ngModel)]="motivo.estado"
+                 name="estado"
+                 #estado="ngModel"
+                 required>
+          <small *ngIf="estado.invalid && estado.touched" class="form-text text-danger">Este campo es obligatorio</small>
+      </div>
+      <div class="form-group">
+          <label>Descripción</label>
+          <input type="text"
+                 class="form-control"
+                 placeholder="Tipo"
+                 [class.is-invalid]="tipo.invalid && tipo.touched"
+                 [(ngModel)]="motivo.tipo"
+                 name="tipo"
+                 #tipo="ngModel"
+                 required>
+          <small *ngIf="tipo.invalid && tipo.touched" class="form-text text-danger">Este campo es obligatorio</small>
       </div>
       
 

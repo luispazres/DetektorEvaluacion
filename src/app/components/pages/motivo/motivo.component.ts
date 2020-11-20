@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Motivo } from 'src/app/interfaces/motivo';
 import { motivos } from '../../data/motivos';
-
-import Swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
 
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-motivo',
@@ -21,19 +20,21 @@ export class MotivoComponent implements OnInit {
   constructor( private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const motivo = this.route.snapshot.paramMap.get('motivo');
 
-    if ( id !== 'nuevo' ) {
+    if ( motivo !== 'nuevo' ) {
 
-      this.motivo = motivos[id];
+      this.motivo = motivos[motivo];
 
     }
   }
 
-  guardar( form: NgForm ) {
+  guardar( forma: NgForm ) {
 
-    if ( form.invalid ) {
-      console.log('Formulario no válido');
+    if ( forma.invalid ) {
+      Object.values( forma.controls ).forEach( control => {
+        control.markAsTouched();
+      });
       return;
     }
 
@@ -48,7 +49,7 @@ export class MotivoComponent implements OnInit {
 
     let peticion: Observable<any>;
 
-    if ( this.motivo.id ) {
+    if ( this.motivo.motivo ) {
       //peticion = this.heroesService.actualizarHeroe( this.heroe );
     } else {
       //peticion = this.heroesService.crearHeroe( this.heroe );

@@ -5,7 +5,7 @@ import { MotivosComponent } from './components/pages/motivos/motivos.component';
 
 const routes: Routes = [
   { path: 'motivos', component: MotivosComponent },
-  { path: 'motivo/:id', component: MotivoComponent },
+  { path: 'motivo/:motivo', component: MotivoComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'motivos'}
 ];
 

@@ -2,31 +2,45 @@ import { Motivo } from 'src/app/interfaces/motivo';
 
 export const motivos: Motivo[] = [
     {
-      id: 1,
-      des_motivo: 'etc 1'
+      motivo: 1,
+      des_motivo: 'etc 1',
+      estado: 'estado 1',
+      tipo: 'a'
     },
     {
-      id: 2,
-      des_motivo: 'etc 2'
+      motivo: 2,
+      des_motivo: 'etc 2',
+      estado: 'estado 2',
+      tipo: 'h'
     },
     {
-      id: 3,
-      des_motivo: 'etc 3'
+      motivo: 3,
+      des_motivo: 'etc 3',
+      estado: 'estado 4',
+      tipo: 'a'
     },
     {
-      id: 4,
-      des_motivo: 'etc 4'
+      motivo: 4,
+      des_motivo: 'etc 4',
+      estado: 'estado 25',
+      tipo: 'e'
     },
     {
-      id: 5,
-      des_motivo: 'etc 5'
+      motivo: 5,
+      des_motivo: 'etc 5',
+      estado: 'estado 18',
+      tipo: 'd'
     },
     {
-      id: 6,
-      des_motivo: 'etc 6'
+      motivo: 6,
+      des_motivo: 'etc 6',
+      estado: 'estado 100',
+      tipo: 'a'
     },
     {
-      id: 7,
-      des_motivo: 'etc 7'
+      motivo: 7,
+      des_motivo: 'etc 7',
+      estado: 'estado 150',
+      tipo: 'b'
     },
   ];
