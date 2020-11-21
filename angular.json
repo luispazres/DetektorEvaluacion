@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "DetektorFrontEnd"
+  "defaultProject": "DetektorFrontEnd",
+  "cli": {
+    "analytics": "0d349d45-b72c-4b8c-ac30-4835c6b4a535"
+  }
 }

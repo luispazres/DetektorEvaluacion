@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, delay } from 'rxjs/operators';
 import { Motivo, Convert } from '../interfaces/motivo';
@@ -8,7 +8,7 @@ import { Motivo, Convert } from '../interfaces/motivo';
 })
 export class MotivosService {
 
-  private url = 'https://localhost/DetektorBackEnd/api';
+  private url = 'http://localhost:80/DetektorBackEnd/api';
 
   constructor( private http: HttpClient) { }
 
@@ -33,13 +33,21 @@ export class MotivosService {
   }
 
   borrarMotivo( motivo: number){
-    let httpParams = new HttpParams().set('motivo', `${motivo}`);
-    let options = { params: httpParams };
+    let headerOptions = new HttpHeaders();
+    headerOptions.append('Access-Control-Allow-Origin', '*');
+    headerOptions.append('Access-Control-Request-Headers', '*');
+    headerOptions.append('Content-Type', 'application/json');
+    headerOptions.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
+    
+    const options = {
+      headers: headerOptions,
+      body: JSON.parse('{  "motivo": '+motivo+'  }') ,
+    };
     return this.http.delete(`${ this.url}/delete.php`, options);
   }
 
   getMotivo( motivo: number){
-    return this.http.get(`${ this.url }/single_read.php/?motivo=${motivo}`);
+    return  this.http.get(`${ this.url }/single_read.php/?motivo=${motivo}`);
   }
 
   getMotivos(){
@@ -54,10 +62,10 @@ export class MotivosService {
 
     const motivos: Motivo[] = [];
 
-    Object.keys( motivoObj ).forEach( key => {
+    Object.keys( motivoObj['body'] ).forEach( key => {
 
-      const motivo: Motivo = motivoObj[key];
-      motivo.motivo = parseInt(key);
+      const motivo: Motivo = motivoObj['body'][key];
+
 
       motivos.push( motivo );
     });

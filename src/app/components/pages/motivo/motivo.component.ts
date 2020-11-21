@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Motivo } from 'src/app/interfaces/motivo';
 import { motivos } from '../../data/motivos';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
 
 import Swal from 'sweetalert2';
+import { MotivoModel } from '../../../models/motivo.model';
+import { MotivosService } from '../../../services/motivos.service';
+import { Motivo } from 'src/app/interfaces/motivo';
 
 @Component({
   selector: 'app-motivo',
@@ -14,17 +16,20 @@ import Swal from 'sweetalert2';
 })
 export class MotivoComponent implements OnInit {
 
-  motivos: Motivo[] = motivos;
-  motivo: Motivo;
+  //motivos: Motivo[] = motivos;
+  motivo: MotivoModel = new MotivoModel() ;
 
-  constructor( private route: ActivatedRoute ) { }
+  constructor( private route: ActivatedRoute, public motivosService: MotivosService ) { }
 
   ngOnInit(): void {
     const motivo = this.route.snapshot.paramMap.get('motivo');
 
     if ( motivo !== 'nuevo' ) {
 
-      this.motivo = motivos[motivo];
+      this.motivosService.getMotivo( parseInt(motivo))
+        .subscribe( (resp: Motivo) => {
+          this.motivo = resp;
+        })
 
     }
   }
@@ -50,9 +55,9 @@ export class MotivoComponent implements OnInit {
     let peticion: Observable<any>;
 
     if ( this.motivo.motivo ) {
-      //peticion = this.heroesService.actualizarHeroe( this.heroe );
+      peticion = this.motivosService.modificarMotivo( this.motivo );
     } else {
-      //peticion = this.heroesService.crearHeroe( this.heroe );
+      peticion = this.motivosService.crearMotivo( this.motivo );
     }
 
     peticion.subscribe( resp => {
